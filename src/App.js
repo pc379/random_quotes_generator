@@ -1,39 +1,49 @@
 import React, { Component } from 'react';
-import logo from './quotes.svg';
+
 import './App.css';
+import Buttons from './components/buttons';
+import Quote from './components/quote';
+import generateQuote from './actions/generateQuote';
+import updateQuote from './actions/updateQuote';
+import generateColor from './actions/generateColor';
+import updateColor from './actions/updateColor';
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      quote: '',
+      author: '',
+      work:'',
+      color: ''
+    }
+
+    this.generateQuote = generateQuote.bind(this);
+    this.updateQuote = updateQuote.bind(this);
+    this.generateColor = generateColor.bind(this);
+    this.updateColor = updateColor.bind(this);
+    this.generateNew = this.generateNew.bind(this);
+  }
+
+  generateNew() {
+    this.generateColor();
+    this.generateQuote();
+  }
+
+  componentWillMount() {
+    this.generateNew();
+  }
+
   render() {
+    document.body.style.background = this.state.color;
     return (
-      // <div className="App">
-      //   <header className="App-header">
-      //     <img src={logo} className="App-logo" alt="logo" />
-      //     <p>
-      //       Edit <code>src/App.js</code> and save to reload.
-      //     </p>
-      //     <a
-      //       className="App-link"
-      //       href="https://reactjs.org"
-      //       target="_blank"
-      //       rel="noopener noreferrer"
-      //     >
-      //       Learn React
-      //     </a>
-      //   </header>
-      // </div>
-      <React.Fragment>
-      <div>
-            <img id="quotes-icon" alt="quotations" src={logo} />
-            <span id="text">The person who says it cannot be done should not interrupt the person who is doing it.</span>
-        </div>
-        <p id="author">- Some Author</p>
-        
-        <div id="sub-content">
-            <a id="tweet-quote" href="https://www.twitter.com/intent/tweet">Twitter</a>
-            <span id="tumblr-quote">Tumblr</span>
-            <span><button id="new-quote">New Quote</button></span>
-        </div>
-        </React.Fragment>
+      <div id="quote-box">
+        <Quote currState = {{...this.state}}/>
+        <Buttons color = {this.state.color} generateNew = {this.generateNew}/>
+      </div>
+
     );
   }
 }

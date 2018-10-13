@@ -1,35 +1,48 @@
 body {
-  background-color: gray; }
+  background-color: gray;
+  transition-property: background-color;
+  transition-duration: 2s; }
 
 #quote-box {
   background-color: white;
   padding: 1.5em;
-  width: 500px;
+  width: 60%;
   font-size: 20px;
   border-radius: 10px 10px 10px 10px;
   -moz-border-radius: 10px 10px 10px 10px;
   -webkit-border-radius: 10px 10px 10px 10px;
   margin: 20px auto; }
+  #quote-box #text {
+    transition-property: color;
+    transition-duration: 2s; }
   #quote-box #author {
+    font-size: 14px;
+    text-align: right;
+    transition-property: color;
+    transition-duration: 2s;
+    margin: 1em 0; }
+  #quote-box #buttons {
     font-size: 14px; }
-  #quote-box #sub-content {
-    font-size: 14px; }
-    #quote-box #sub-content #tweet-quote {
-      height: 100px;
-      width: 100px; }
-    #quote-box #sub-content #tumblr-quote {
-      height: 100px;
-      width: 100px; }
-    #quote-box #sub-content #new-quote {
+    #quote-box #buttons #tweet-quote {
+      margin: 1em; }
+    #quote-box #buttons #tumblr-quote {
+      margin: 1em; }
+    #quote-box #buttons #new-quote {
       border: none;
       background-color: gray;
       color: white; }
+
+.btn {
+  transition-property: background-color;
+  transition-duration: 2s;
+  color: white; }
 
 #quotes-icon {
   height: 20px;
   width: 20px; }
 
 #app-creator {
-  margin: 0 auto; }
+  text-align: center;
+  color: white; }
 
 /*# sourceMappingURL=App.css.map */
