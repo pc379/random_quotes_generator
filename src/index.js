@@ -9,12 +9,10 @@ import {Provider} from 'react-redux';
 import allReducers from './reducers/allReducers'
 import thunk from 'redux-thunk';
 
-import generateColor from './actions/generateColor';
-import generateQuote from './actions/generateQuote';
-
+import {composeWithDevTools} from 'redux-devtools-extension';
 
 //Redux
-const store = createStore(allReducers, applyMiddleware(thunk));
+const store = createStore(allReducers, composeWithDevTools(applyMiddleware(thunk)));
 
 ReactDOM.render(<Provider store = { store }><App /></Provider>, document.getElementById('root'));
 

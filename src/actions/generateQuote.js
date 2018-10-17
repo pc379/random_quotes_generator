@@ -1,4 +1,22 @@
 export default function generateQuote(dispatch) {
+    new Promise((resolve, reject)=>{
+        fetch('quotes.json', {method:'GET'}).then(response => {
+            resolve(response);
+            return response.json();
+        }).then(data => {
+            let randNum = Math.floor(Math.random()*data.quotes.length);
+            dispatch({type: 'NEW_QUOTE', payload: {
+                quote:data.quotes[randNum].quote,
+                author: data.quotes[randNum].author,
+                work: data.quotes[randNum].work
+            }});
+        }).catch(function(err){
+            reject(new Error(err));
+            dispatch({type: 'NEW_QUOTE', payload: {quote:'ERROR RETRIEVING QUOTE', author:'', work:''}});
+        })
+    });
+
+//PURE AJAX - NON REDUX/REDUXTHUNK IMPLEMENTATION
     // let xhr = new XMLHttpRequest();
     // let qodText, qodAuthor, qodWork;
    
@@ -19,15 +37,5 @@ export default function generateQuote(dispatch) {
     //     }   
     // }
     // xhr.send();
-    fetch('quotes.json', {method:'GET'}).then(response => response.json()).then(data => {
-
-        let randNum = Math.floor(Math.random()*data.quotes.length);
-        dispatch({type: 'NEW_QUOTE', payload: {
-            quote:data.quotes[randNum].quote,
-            author: data.quotes[randNum].author,
-            work: data.quotes[randNum].work
-        }});
-    }).catch(function(err){
-        dispatch({type: 'NEW_QUOTE', payload: {quote:'ERROR RETRIEVING QUOTE', author:'', work:''}});
-    })
+    
   }

@@ -17,7 +17,7 @@ const quoteReducer = (state=defaultQuote, action) => {
         }
         default: return state;
     }
-    return state;
+    // return state;
 };
 
 export default quoteReducer;

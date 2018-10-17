@@ -2,18 +2,25 @@ import hexToRgb from './hexToRgb';
 
 export default function generateColor(dispatch) {
    
-    fetch('http://www.colr.org/json/color/random', {method:'GET'}).then(response => response.json()).then(data => {
-        let rgb = hexToRgb(data.colors[0].hex);
-        let color = [rgb.r, rgb.g, rgb.b];
-        (color.reduce((total,item) => total+item) > 580) && (color = color.map((x)=> x-70));
-        let payload = 'rgb('+color.join(',')+')';
-        console.log(payload);
-        dispatch({type: 'NEW_COLOR', payload: 'rgb('+color.join(',')+')'});
-    }).catch(function(err){
-        console.log('ERROR GENERATING COLOR');
-        dispatch({type: 'NEW_COLOR', payload: 'rgb(255,0,0)'});
+    new Promise ((resolve, reject)=>{
+        fetch('http://www.colr.org/json/color/random', {method:'GET'}).then(response => {
+            resolve(response);    
+            return response.json();
+        }).then(data => {
+            let rgb = hexToRgb(data.colors[0].hex);
+            let color = [rgb.r, rgb.g, rgb.b];
+            (color.reduce((total,item) => total+item) > 580) && (color = color.map((x)=> x-70));
+            let payload = 'rgb('+color.join(',')+')';
+            console.log(payload);
+            dispatch({type: 'NEW_COLOR', payload: 'rgb('+color.join(',')+')'});
+            
+        }).catch(function(err){
+            console.log(err);
+            console.log('ERROR GENERATING COLOR');
+            dispatch({type: 'NEW_COLOR', payload: 'rgb(255,0,0)'});
+            reject(new Error('error'));
+        })
     })
-
     //PURE AJAX NON REDUX THUNK
     // return (dispatch) => {
     //     const xhr = new XMLHttpRequest();
