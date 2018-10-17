@@ -7,8 +7,9 @@
 
 @mixin colorTransition($prop) {
     transition-property: $prop;
-    transition-duration: 2s;
+    transition-duration: 500ms;
 }
+
 
 body {
     background-color: gray;
@@ -22,7 +23,6 @@ body {
     font-size: 20px;
     @include border();
     margin: 20px auto;
-    
 
     #text {
         @include colorTransition(color);
@@ -40,6 +40,7 @@ body {
 
         #tweet-quote{
             margin: 1em;
+            
         }
     
         #tumblr-quote{
@@ -49,7 +50,7 @@ body {
     
         #new-quote {
             border: none;
-            background-color: gray; 
+            
             color: white;
     
         }
@@ -60,6 +61,7 @@ body {
 .btn {
     @include colorTransition(background-color);
     color: white;
+    background-color: gray; 
 }
 
 #quotes-icon {

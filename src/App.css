@@ -1,7 +1,7 @@
 body {
   background-color: gray;
   transition-property: background-color;
-  transition-duration: 2s; }
+  transition-duration: 500ms; }
 
 #quote-box {
   background-color: white;
@@ -14,12 +14,12 @@ body {
   margin: 20px auto; }
   #quote-box #text {
     transition-property: color;
-    transition-duration: 2s; }
+    transition-duration: 500ms; }
   #quote-box #author {
     font-size: 14px;
     text-align: right;
     transition-property: color;
-    transition-duration: 2s;
+    transition-duration: 500ms;
     margin: 1em 0; }
   #quote-box #buttons {
     font-size: 14px; }
@@ -29,13 +29,13 @@ body {
       margin: 1em; }
     #quote-box #buttons #new-quote {
       border: none;
-      background-color: gray;
       color: white; }
 
 .btn {
   transition-property: background-color;
-  transition-duration: 2s;
-  color: white; }
+  transition-duration: 500ms;
+  color: white;
+  background-color: gray; }
 
 #quotes-icon {
   height: 20px;
@@ -45,4 +45,4 @@ body {
   text-align: center;
   color: white; }
 
-/*# sourceMappingURL=App.css.map */
+/*# sourceMappingURL=app.css.map */

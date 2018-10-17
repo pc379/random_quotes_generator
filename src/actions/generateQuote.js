@@ -1,15 +1,22 @@
+import Velocity from 'velocity-animate';
+
 export default function generateQuote(dispatch) {
+    
     new Promise((resolve, reject)=>{
         fetch('quotes.json', {method:'GET'}).then(response => {
             resolve(response);
             return response.json();
         }).then(data => {
             let randNum = Math.floor(Math.random()*data.quotes.length);
-            dispatch({type: 'NEW_QUOTE', payload: {
-                quote:data.quotes[randNum].quote,
-                author: data.quotes[randNum].author,
-                work: data.quotes[randNum].work
-            }});
+            Velocity(document.getElementById('quote-content'), {opacity: 0}, 500);
+            setTimeout(function(){
+                dispatch({type: 'NEW_QUOTE', payload: {
+                    quote:data.quotes[randNum].quote,
+                    author: data.quotes[randNum].author,
+                    work: data.quotes[randNum].work
+                }});
+            }, 500);
+            
         }).catch(function(err){
             reject(new Error(err));
             dispatch({type: 'NEW_QUOTE', payload: {quote:'ERROR RETRIEVING QUOTE', author:'', work:''}});

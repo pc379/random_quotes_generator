@@ -4,9 +4,10 @@ import generateColor from '../actions/generateColor';
 import generateQuote from '../actions/generateQuote';
 
 
-const mapStateToProps = (state) => ({
-    color: state.color
-});
+const mapStateToProps = (state) => {
+    // console.log(state.color);
+    return { color: state.colorReducer.color }
+};
 const mapActionsToProps = (dispatch) => { return {
     generateNew : () => {
         generateQuote(dispatch);

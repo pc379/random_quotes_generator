@@ -1,3 +1,4 @@
+import Velocity from 'velocity-animate';
 import React, { Component } from 'react';
 
 import './App.css';
@@ -10,6 +11,8 @@ import Quote from './components/quote';
 // import updateColor from './actions/updateColor';
 import {connect} from 'react-redux'
 
+
+
 class App extends Component {
   
   // constructor(props) {
@@ -21,9 +24,16 @@ class App extends Component {
   //   // this.updateColor = updateColor.bind(this);
   //   // this.generateNew = this.generateNew.bind(this);
   // }
-
   componentWillMount() {
-    // console.log(generateQuote());
+    
+  }
+
+  componentDidMount(){
+    Velocity(document.getElementById('quote-content'), {opacity: 1}, 5000);
+  }
+
+  componentDidUpdate(){
+    Velocity(document.getElementById('quote-content'), {opacity: 1}, 500);
   }
 
   render() {

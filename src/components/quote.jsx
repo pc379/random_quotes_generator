@@ -5,7 +5,7 @@ export default class Quote extends Component {
     render() {
         return (
             
-            <div style={{color: this.props.currState.color}}>
+            <div id ="quote-content" style={{color: this.props.currState.color}}>
                 <img id="quotes-icon" alt="quotations" src='quotes.svg' style={{fill: this.props.currState.color}}/>
                 <span id="text"> {this.props.currState.quote} </span>
                 <img id="quotes-icon" alt="quotations" src='down-quotes.svg' style={{borderColor: this.props.currState.color}}/>
